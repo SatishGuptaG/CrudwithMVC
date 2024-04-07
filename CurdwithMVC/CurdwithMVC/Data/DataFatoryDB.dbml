@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CRUD" Class="DataFatoryDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=Manish\MSSQLSERVER2023;Initial Catalog=CRUD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CRUDConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.procSaveUser_07042024" Method="procSaveUser_07042024">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="MobileNo" Parameter="mobileNo" Type="System.String" DbType="NVarChar(100)" />
+    <ElementType Name="procSaveUser_07042024Result">
+      <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
