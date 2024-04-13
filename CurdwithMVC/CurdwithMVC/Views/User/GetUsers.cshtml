@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CurdwithMVC.Models.User>
+
+@{
+    ViewBag.Title = "GetUsers";
+}
+
+<h2>GetUsers</h2>
+
+<p>
+    <a href="@Url.Action("NewUser")" class="btn btn-primary">Create New</a>
+</p>
+<table class="table table-striped">
+    <thead class="thead-dark bg-secondary">
+        <tr class="p-4">
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNumber)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td><td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNumber)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "User", new { id = item.Id })" class="btn btn-primary">Edit</a>
+
+                    <a href="@Url.Action("Delete", new { @*id = item.primarykey*@ })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -68,6 +68,27 @@ namespace CurdwithMVC.Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), name, email, password, mobileNo);
 			return ((ISingleResult<procSaveUser_07042024Result>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetUsers_07042024")]
+		public ISingleResult<procGetUsers_07042024Result> procGetUsers_07042024()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<procGetUsers_07042024Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procUpdateUser_07042024")]
+		public ISingleResult<procUpdateUser_07042024Result> procUpdateUser_07042024([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Name", DbType="NVarChar(100)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(100)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(100)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MobileNo", DbType="NVarChar(100)")] string mobileNo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, name, email, password, mobileNo);
+			return ((ISingleResult<procUpdateUser_07042024Result>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetUserDetail_07042024")]
+		public ISingleResult<procGetUserDetail_07042024Result> procGetUserDetail_07042024([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<procGetUserDetail_07042024Result>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class procSaveUser_07042024Result
@@ -91,6 +112,210 @@ namespace CurdwithMVC.Data
 				if ((this._isValid != value))
 				{
 					this._isValid = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procGetUsers_07042024Result
+	{
+		
+		private string _Name;
+		
+		private string _Email;
+		
+		private string _MobileNo;
+		
+		private int _id;
+		
+		public procGetUsers_07042024Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(100)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MobileNo", DbType="NVarChar(100)")]
+		public string MobileNo
+		{
+			get
+			{
+				return this._MobileNo;
+			}
+			set
+			{
+				if ((this._MobileNo != value))
+				{
+					this._MobileNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procUpdateUser_07042024Result
+	{
+		
+		private System.Nullable<bool> _isValid;
+		
+		public procUpdateUser_07042024Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isValid", DbType="Bit")]
+		public System.Nullable<bool> isValid
+		{
+			get
+			{
+				return this._isValid;
+			}
+			set
+			{
+				if ((this._isValid != value))
+				{
+					this._isValid = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procGetUserDetail_07042024Result
+	{
+		
+		private string _Name;
+		
+		private string _Email;
+		
+		private string _MobileNo;
+		
+		private int _id;
+		
+		private string _Password;
+		
+		public procGetUserDetail_07042024Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(100)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MobileNo", DbType="NVarChar(100)")]
+		public string MobileNo
+		{
+			get
+			{
+				return this._MobileNo;
+			}
+			set
+			{
+				if ((this._MobileNo != value))
+				{
+					this._MobileNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(100)")]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this._Password = value;
 				}
 			}
 		}

@@ -1,37 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using System.Web.Mvc;
-//using CurdwithMVC.Models;
-
-//namespace CurdwithMVC.Controllers
-//{
-//    public class UserController : Controller
-//    {
-//        // GET: User
-//        public ActionResult NewUser()
-//        {
-//            return View();
-//        }
-//		[HttpPost]
-
-
-//		public ActionResult Registration( User user)
-//		{
-//			return View();
-//		}
-
-//		public ActionResult Index()
-//		{
-//			return View();
-//		}
-
-//	}
-//}
-
-
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using CurdwithMVC.Models;
 using CurdwithMVC.Service;
 
@@ -65,10 +32,13 @@ namespace CurdwithMVC.Controllers
 				// Optionally, you can redirect to a success page
 				//return RedirectToAction("NewUserSuccess");
 				return Json(result, JsonRequestBehavior.AllowGet);
+			
+		}
+		public ActionResult GetUsers()
+		{
+			var res = _userService.GetUsers();
 
-		
-			
-			
+			return View(res);
 		}
 
 		// GET: User/NewUserSuccess
@@ -76,5 +46,39 @@ namespace CurdwithMVC.Controllers
 		{
 			return View();
 		}
+
+		[HttpGet]
+		public ActionResult Edit(int id)
+		{
+			var user = _userService.GetUserById(id);
+			if (user == null)
+			{
+				return HttpNotFound(); // Or some other appropriate action
+			}
+			return View(user);
+		}
+
+		[HttpPost]
+		public JsonResult UpdateUser(User user)
+		{
+			
+			var result = _userService.UpdateUser(user);
+			return Json(result, JsonRequestBehavior.AllowGet);
+
+		}
+
+		[HttpPost]
+		public ActionResult Delete(int id)
+		{
+			var result = _userService.DeleteUser(id);
+			if (result)
+			{
+				// Optionally, you can redirect to a success page or refresh the user list
+				return RedirectToAction("GetUsers");
+			}
+			// Optionally handle the case where delete fails
+			return RedirectToAction("GetUsers");
+		}
+
 	}
 }

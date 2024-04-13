@@ -9,4 +9,32 @@
       <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.procGetUsers_07042024" Method="procGetUsers_07042024">
+    <ElementType Name="procGetUsers_07042024Result">
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MobileNo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procUpdateUser_07042024" Method="procUpdateUser_07042024">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="MobileNo" Parameter="mobileNo" Type="System.String" DbType="NVarChar(100)" />
+    <ElementType Name="procUpdateUser_07042024Result">
+      <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procGetUserDetail_07042024" Method="procGetUserDetail_07042024">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="procGetUserDetail_07042024Result">
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MobileNo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

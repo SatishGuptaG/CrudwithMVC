@@ -2,9 +2,12 @@
 @{
     ViewBag.Title = "Index";
 }
+<p>
+    <a href="@Url.Action("GetUsers")" class="btn btn-primary">Create New</a>
+</p>
 <h2 class="text-center">Registration Form</h2>
 <div class="container-fluid min-vh-100 w-50 justify-content-center">
-    <form class="mb-3"  action="#">
+    <form class="mb-3" action="#">
         <div class="mb-3" action="#">
             <label>UserName</label>
             <input type="text" class="form-control" id="UserName" placeholder="UserName" onkeyup="validateForm()">
@@ -30,17 +33,19 @@
             <input type="password" class="form-control" id="ConfirmPassword" placeholder="ConfirmPassword" onkeyup="validateForm()">
             <span id="ConfirmError" class="text-danger"></span>
         </div>
-        <button class="d-grid btn btn-primary w-50 mx-auto" type="submit" value="Submit" onclick ="submitI()">Summit</button>
+        <button class="d-grid btn btn-primary w-50 mx-auto" type="submit" value="Submit" onclick="submitI()">Summit</button>
     </form>
 </div>
 @* Validation *@
 <script>
     function validateForm() {
+        
         var userName = document.getElementById("UserName").value;
         var EMAIL = document.getElementById("Email").value;
         var MOBILE = document.getElementById("MobileNumber").value;
         var PASSWORD = document.getElementById("Password").value;
         var CONFIRMPASSWORD = document.getElementById("ConfirmPassword").value;
+
 
         if (userName.length == 0) {
             document.getElementById('NameError').innerHTML = "Please Enter Your UserName";
@@ -91,18 +96,20 @@
         }
 
         // If validation passes, fetch all field data and proceed with form submission
+
         var userName = document.getElementById("UserName").value.trim();
         var EMAIL = document.getElementById("Email").value.trim();
         var MOBILE = document.getElementById("MobileNumber").value.trim();
         var PASSWORD = document.getElementById("Password").value.trim();
        // var CONFIRMPASSWORD = document.getElementById("ConfirmPassword").value.trim();
-        
+
         // Create a FormData object to store the form data
         var formData = new FormData();
         formData.append("UserName", userName);
         formData.append("Email", EMAIL);
         formData.append("MobileNumber", MOBILE);
         formData.append("Password", PASSWORD);
+       
       //  formData.append("ConfirmPassword", CONFIRMPASSWORD);
 
         // Send a POST request using fetch
@@ -118,6 +125,13 @@
         })
         .then(data => {
             // Handle the response data as needed
+            if (data) {
+                alert("User Inserted Successfully!");
+            }
+            else {
+                alert("Email Already Exist!");
+            }
+            
             console.log(data);
         })
         .catch(error => {

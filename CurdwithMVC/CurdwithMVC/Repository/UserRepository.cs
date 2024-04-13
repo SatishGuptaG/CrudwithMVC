@@ -18,13 +18,77 @@ namespace CurdwithMVC.Repository
 			_dataFatoryDBDataContext = _dataFatory.DataFatoryDBDataContext();
 		}
 
+		public List<User> GetUsers()
+		{
+			var dbResp = _dataFatoryDBDataContext.procGetUsers_07042024();
+			var User = (from o in dbResp
+						   select new User
+						   {
+							   UserName= o.Name,
+							   Email= o.Email,
+							   MobileNumber= o.MobileNo,
+							   Id=o.id,
+						   }).ToList();
+			return User;	
+
+		}
+
+		public User GetUserById(int id)
+		{
+			var dbResp = _dataFatoryDBDataContext.procGetUserDetail_07042024(id);
+			var user = dbResp.Select(o => new User
+			{
+				UserName = o.Name,
+				Email = o.Email,
+				MobileNumber = o.MobileNo,
+				Id = o.id,
+			    Password= o.Password,
+			})
+			.FirstOrDefault();
+			return user;
+		}
+
 		public bool SaveUser(User user)
 		{
-			var res = _dataFatoryDBDataContext.procSaveUser_07042024(user.UserName, user.Email, user.MobileNumber, user.Password);
+			var res = _dataFatoryDBDataContext.procSaveUser_07042024(user.UserName, user.Email, user.Password, user.MobileNumber);
 			//why we use FirstOrDefault 
 			var isValid = res.FirstOrDefault().isValid;
 			//why we use cast
 			return (bool)isValid;
 		}
+
+		public bool UpdateUser(User user)
+		{
+			// Check if the new email is the same as the existing email
+			var existingUser = GetUserById(user.Id);
+			if (existingUser == null)
+			{
+				// Handle case where user with the specified ID does not exist
+				return false;
+			}
+
+			if (existingUser.Email != user.Email)
+			{
+				// Email is being changed, check if the new email already exists
+				//var isEmailExists = GetUsers().Any(u => u.Email == user.Email);
+				//if (isEmailExists)
+				//{
+					// Email already exists, cannot update
+					return false;
+				//}
+			}
+
+			// Proceed with the update operation
+			var res = _dataFatoryDBDataContext.procUpdateUser_07042024(user.Id, user.UserName, user.Email, user.Password, user.MobileNumber);
+			var isValid = res.FirstOrDefault()?.isValid;
+			return isValid ?? false;
+		}
+
+		public bool DeleteUser(int id)
+		{
+			// Implement logic to delete user from the database
+			throw new System.NotImplementedException();
+		}
+
 	}
 }
