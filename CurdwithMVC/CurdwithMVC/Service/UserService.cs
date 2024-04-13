@@ -16,10 +16,33 @@ namespace CurdwithMVC.Service
 			_userRepository = userRepository;
 		}
 
+		public List<User> GetUsers()
+		{
+			var res = _userRepository.GetUsers();
+			return res;
+		}
+
+		public User GetUserById(int id)
+		{
+			return _userRepository.GetUserById(id);
+		}
+
+
 		public bool SaveUser(User user)
 		{
 			var res= _userRepository.SaveUser(user);
 			return res;
 		}
+
+		public bool UpdateUser(User user)
+		{
+			return _userRepository.UpdateUser(user);
+		}
+
+		public bool DeleteUser(int id)
+		{
+			return _userRepository.DeleteUser(id);
+		}
+
 	}
 }

@@ -1,0 +1,146 @@
+﻿@model CurdwithMVC.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+}
+<p>
+    <a href="@Url.Action("GetUsers")" class="btn btn-primary">Create New</a>
+</p>
+<h2 class="text-center">Edit User</h2>
+<div class="container-fluid min-vh-100 w-50 justify-content-center">
+
+    <div class="mb-3" action="#">
+        <label>Id</label>
+        <input type="text" class="form-control" id="Id" disabled placeholder="Id" value="@Model.Id" onkeyup="validateForm()">
+        <span id="IdError" class="text-danger"></span>
+    </div>
+    <div class="mb-3" action="#">
+        <label>UserName</label>
+        <input type="text" class="form-control" id="UserName" placeholder="UserName" value="@Model.UserName" onkeyup="validateForm()">
+        <span id="NameError" class="text-danger"></span>
+    </div>
+    <div class="mb-3" action="#">
+        <label>Email</label>
+        <input type="email" class="form-control" id="Email" placeholder="Email" value="@Model.Email" onkeyup="validateForm()">
+        <span id="EmailError" class="text-danger"></span>
+    </div>
+    <div class="mb-3" action="#">
+        <label>MobileNumber</label>
+        <input type="number" class="form-control" id="MobileNumber" placeholder="MobileNumber" value="@Model.MobileNumber" onkeyup="validateForm()">
+        <span id="MobileError" class="text-danger"></span>
+    </div>
+    <div class="mb-3" action="#">
+        <label>Password</label>
+        <input type="password" class="form-control" id="Password" placeholder="Password" value="@Model.Password" onkeyup="validateForm()">
+        <span id="PasswordError" class="text-danger"></span>
+    </div>
+    <button class="d-grid btn btn-primary w-50 mx-auto" type="submit" value="Save" onclick="submitI()">Save</button>
+
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "GetUsers")
+</div>
+
+<script>
+    function validateForm() {
+
+        var ID = document.getElementById("Id").value;
+        var userName = document.getElementById("UserName").value;
+        var EMAIL = document.getElementById("Email").value;
+        var MOBILE = document.getElementById("MobileNumber").value;
+        var PASSWORD = document.getElementById("Password").value;
+       
+        if (ID.length == 0) {
+            document.getElementById('NameError').innerHTML = "Please Enter Your UserName";
+            return false;
+        } else {
+            document.getElementById('NameError').innerHTML = "";
+        }
+
+        if (userName.length == 0) {
+            document.getElementById('NameError').innerHTML = "Please Enter Your UserName";
+            return false;
+        } else {
+            document.getElementById('NameError').innerHTML = "";
+        }
+
+        if (EMAIL.length == 0) {
+            document.getElementById('EmailError').innerHTML = "Please Enter Your E-Mail";
+            return false;
+        } else {
+            document.getElementById('EmailError').innerHTML = "";
+        }
+
+        if (MOBILE.length == 0) {
+            document.getElementById('MobileError').innerHTML = "Please Enter Your Mobile Number";
+            return false;
+        } else {
+            document.getElementById('MobileError').innerHTML = "";
+        }
+
+        if (PASSWORD.length == 0) {
+            document.getElementById('PasswordError').innerHTML = "Please Enter Your Password";
+            return false;
+        } else {
+            document.getElementById('PasswordError').innerHTML = "";
+        }
+
+        // All validations passed
+        return true;
+    }
+
+    function submitI() {
+
+        if (!validateForm()) {
+            return;
+        }
+
+        // If validation passes, fetch all field data and proceed with form submission
+
+        var ID = document.getElementById("Id").value
+        var userName = document.getElementById("UserName").value
+        var EMAIL = document.getElementById("Email").value
+        var MOBILE = document.getElementById("MobileNumber").value
+        var PASSWORD = document.getElementById("Password").value
+        // var CONFIRMPASSWORD = document.getElementById("ConfirmPassword").value.trim();
+
+        // Create a FormData object to store the form data
+        var formData = new FormData();
+        formData.append("Id", ID);
+        formData.append("UserName", userName);
+        formData.append("Email", EMAIL);
+        formData.append("MobileNumber", MOBILE);
+        formData.append("Password", PASSWORD);
+
+        //  formData.append("ConfirmPassword", CONFIRMPASSWORD);
+
+        // Send a POST request using fetch
+        fetch("/User/UpdateUser", {
+            method: "POST",
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle the response data as needed
+                if (data) {
+                    alert("User updated successfully!");
+                    window.location.href = "/user/getusers";
+                }
+                else {
+                    alert("Invalid info!");
+                }
+
+                console.log(data);
+            })
+            .catch(error => {
+                console.error("There was a problem with the fetch operation:", error);
+            });
+    }
+
+</script>
