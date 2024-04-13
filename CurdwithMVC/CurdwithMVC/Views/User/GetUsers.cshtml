@@ -46,7 +46,7 @@
                 <td>
                     <a href="@Url.Action("Edit", "User", new { id = item.Id })" class="btn btn-primary">Edit</a>
 
-                    <a href="@Url.Action("Delete", new { @*id = item.primarykey*@ })" class="btn btn-danger">Delete</a>
+                    <a href="@Url.Action("Delete","User", new {id = item.Id })" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }

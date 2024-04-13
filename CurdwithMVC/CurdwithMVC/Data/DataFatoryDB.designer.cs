@@ -89,6 +89,13 @@ namespace CurdwithMVC.Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
 			return ((ISingleResult<procGetUserDetail_07042024Result>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procDeleteUser_07042024")]
+		public ISingleResult<procDeleteUser_07042024Result> procDeleteUser_07042024([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<procDeleteUser_07042024Result>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class procSaveUser_07042024Result
@@ -316,6 +323,32 @@ namespace CurdwithMVC.Data
 				if ((this._Password != value))
 				{
 					this._Password = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procDeleteUser_07042024Result
+	{
+		
+		private System.Nullable<bool> _isValid;
+		
+		public procDeleteUser_07042024Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isValid", DbType="Bit")]
+		public System.Nullable<bool> isValid
+		{
+			get
+			{
+				return this._isValid;
+			}
+			set
+			{
+				if ((this._isValid != value))
+				{
+					this._isValid = value;
 				}
 			}
 		}

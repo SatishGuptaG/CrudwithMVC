@@ -87,7 +87,9 @@ namespace CurdwithMVC.Repository
 		public bool DeleteUser(int id)
 		{
 			// Implement logic to delete user from the database
-			throw new System.NotImplementedException();
+			var dbResp = _dataFatoryDBDataContext.procDeleteUser_07042024(id);
+			var isValid = dbResp.FirstOrDefault()?.isValid;
+			return isValid ?? false;
 		}
 
 	}

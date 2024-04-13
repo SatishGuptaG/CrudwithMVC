@@ -67,7 +67,7 @@ namespace CurdwithMVC.Controllers
 
 		}
 
-		[HttpPost]
+		[HttpGet]
 		public ActionResult Delete(int id)
 		{
 			var result = _userService.DeleteUser(id);

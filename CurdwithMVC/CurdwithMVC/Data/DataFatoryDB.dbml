@@ -37,4 +37,10 @@
       <Column Name="Password" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.procDeleteUser_07042024" Method="procDeleteUser_07042024">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="procDeleteUser_07042024Result">
+      <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
