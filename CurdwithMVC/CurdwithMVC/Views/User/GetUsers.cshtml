@@ -24,7 +24,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.MobileNumber)
             </th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.SelectedCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -34,7 +39,8 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Id)
-                </td><td>
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 <td>
@@ -42,6 +48,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MobileNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SelectedCity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
                 </td>
                 <td>
                     <a href="@Url.Action("Edit", "User", new { id = item.Id })" class="btn btn-primary">Edit</a>
