@@ -6,46 +6,116 @@
     <a href="@Url.Action("GetUsers")" class="btn btn-primary">GetUsersList</a>
 </p>
 <h2 class="text-center">Registration Form</h2>
+
 <div class="container-fluid min-vh-100 w-50 justify-content-center">
+    @*  UserName Start *@
     <form class="mb-3" action="#">
         <div class="mb-3" action="#">
             <label>UserName</label>
             <input type="text" class="form-control" id="UserName" placeholder="UserName" onkeyup="validateForm()">
             <span id="NameError" class="text-danger"></span>
         </div>
+        @*  UserName End *@
+
+        @*  Email Start *@
         <div class="mb-3" action="#">
             <label>Email</label>
             <input type="email" class="form-control" id="Email" placeholder="Email" onkeyup="validateForm()">
             <span id="EmailError" class="text-danger"></span>
         </div>
+        @*  Email End *@
+
+        @*  MobileNumber Start *@
         <div class="mb-3" action="#">
             <label>MobileNumber</label>
             <input type="number" class="form-control" id="MobileNumber" placeholder="MobileNumber" onkeyup="validateForm()">
             <span id="MobileError" class="text-danger"></span>
         </div>
+        @*  MobileNumber End *@
+
+        @*  Password Start *@
         <div class="mb-3" action="#">
             <label>Password</label>
             <input type="password" class="form-control" id="Password" placeholder="password" onkeyup="validateForm()">
             <span id="PasswordError" class="text-danger"></span>
         </div>
+        @*  Password End *@
+
+        @*  ConfirmPassword Start *@
         <div class="mb-3" action="#">
             <label class="">ConfirmPassword</label>
             <input type="password" class="form-control" id="ConfirmPassword" placeholder="ConfirmPassword" onkeyup="validateForm()">
             <span id="ConfirmError" class="text-danger"></span>
         </div>
+        @*  ConfirmPassword End *@
+
+        @*  Select City Start *@
+        <div class="mb-3" action="#">
+            <label>Select City</label>
+            <select class="form-select" id="SelectedCity" onchange="validateForm()">
+                <option selected disabled value="">Select City</option>
+                <option>Noida</option>
+                <option>Mumbai</option>
+                <option>Chennai</option>
+                <option>Pune</option>
+                <option>Delhi</option>
+                <option>Ahmedabad</option>
+                <option>Bangalore</option>
+                <option>Kolkata</option>
+                <option>Lucknow</option>
+                <option>Surat</option>
+            </select>
+            <span id="SelectOptionError" class="text-danger"></span>
+        </div>
+
+        @*  Select City End *@
+
+        @*  Gender Start *@
+        <div class="mb-3" action="#">
+            <label>Gender :</label>
+            <div class="form-check-inline">
+                <input class="form-check-input" id="Male" type="radio" name="gender" value="male" onchange="validateForm()">
+                <label for="Male">Male</label>
+            </div>
+            <div class=" form-check-inline">
+                <input class="form-check-input" id="Female" type="radio" name="gender" value="female" onchange="validateForm()">
+                <label for="Female">Female</label>
+            </div>
+            <div class="form-check-inline">
+                <input class="form-check-input" id="Other" type="radio" name="gender" value="others" onchange="validateForm()">
+                <label for="Other">Other</label>
+            </div>
+            <span id="GenderError" class="text-danger"></span>
+        </div>
+        @*  Gender End *@
+
+        @*  RememberMe Start *@
+        <div class="mb-3 d-inline-flex" action="#">
+            <label>Remember Me :</label><br>
+            <input class="mx-2" type="checkbox" id="CheckBox" onchange="validateForm()">
+            <span id="RememberError" class="text-danger"></span>
+        </div>
+        @*  RememberMe End *@
+
+        @*  Submit Button Start *@
         <button class="d-grid btn btn-primary w-50 mx-auto" type="submit" value="Submit" onclick="submitI()">Summit</button>
+        @*  Submit Button End *@
+
     </form>
 </div>
-@* Validation *@
+@* Validation Start *@
 <script>
-    function validateForm() {
-        
+
+        function validateForm() {
+
         var userName = document.getElementById("UserName").value;
         var EMAIL = document.getElementById("Email").value;
         var MOBILE = document.getElementById("MobileNumber").value;
         var PASSWORD = document.getElementById("Password").value;
         var CONFIRMPASSWORD = document.getElementById("ConfirmPassword").value;
-
+        var SelectOption = document.getElementById("SelectedCity").value;
+        var GenderError = document.querySelector('input[name="gender"]:checked');
+        var rememberCheckbox = document.getElementById('CheckBox');
 
         if (userName.length == 0) {
             document.getElementById('NameError').innerHTML = "Please Enter Your UserName";
@@ -53,28 +123,28 @@
         } else {
             document.getElementById('NameError').innerHTML = "";
         }
-      
+
         if (EMAIL.length == 0) {
             document.getElementById('EmailError').innerHTML = "Please Enter Your E-Mail";
             return false;
         } else {
             document.getElementById('EmailError').innerHTML = "";
         }
-       
+
         if (MOBILE.length == 0) {
             document.getElementById('MobileError').innerHTML = "Please Enter Your Mobile Number";
             return false;
         } else {
             document.getElementById('MobileError').innerHTML = "";
         }
-       
+
         if (PASSWORD.length == 0) {
             document.getElementById('PasswordError').innerHTML = "Please Enter Your Password";
             return false;
         } else {
             document.getElementById('PasswordError').innerHTML = "";
         }
-       
+
         if (CONFIRMPASSWORD.length == 0) {
             document.getElementById('ConfirmError').innerHTML = "Please Enter Your Confirm Password";
         }
@@ -85,9 +155,30 @@
             document.getElementById('ConfirmError').innerHTML = "";
         }
 
+        if (SelectOption === "") {
+            document.getElementById('SelectOptionError').innerHTML = "Please Select a City";
+            return false;
+        } else {
+            document.getElementById('SelectOptionError').innerHTML = "";
+        }
+
+        if (GenderError === null) {
+            document.getElementById('GenderError').innerHTML = "Please Select Your Gender";
+            return false;
+        } else {
+            document.getElementById('GenderError').innerHTML = "";
+        }
+
+        if (!rememberCheckbox.checked) {
+                document.getElementById('RememberError').innerHTML = "Please check the Remember Me checkbox";
+                return false;
+            } else {
+                document.getElementById('RememberError').innerHTML = "";
+            }
         // All validations passed
         return true;
     }
+    @* Validation End *@
 
     function submitI() {
 
@@ -101,7 +192,10 @@
         var EMAIL = document.getElementById("Email").value.trim();
         var MOBILE = document.getElementById("MobileNumber").value.trim();
         var PASSWORD = document.getElementById("Password").value.trim();
-       // var CONFIRMPASSWORD = document.getElementById("ConfirmPassword").value.trim();
+        var SelectOption = document.getElementById("SelectedCity").value.trim();
+        var GenderError = document.querySelector('input[name="gender"]:checked').value;
+        var rememberCheckbox = document.getElementById("CheckBox").value.trim();
+
 
         // Create a FormData object to store the form data
         var formData = new FormData();
@@ -109,7 +203,10 @@
         formData.append("Email", EMAIL);
         formData.append("MobileNumber", MOBILE);
         formData.append("Password", PASSWORD);
-       
+        formData.append("SelectedCity", SelectOption);
+        formData.append("Gender", GenderError);
+        formData.append("CheckBox", rememberCheckbox);
+
       //  formData.append("ConfirmPassword", CONFIRMPASSWORD);
 
         // Send a POST request using fetch
@@ -131,7 +228,7 @@
             else {
                 alert("Email Already Exist!");
             }
-            
+            window.location.href = "/User/NewUser";
             console.log(data);
         })
         .catch(error => {

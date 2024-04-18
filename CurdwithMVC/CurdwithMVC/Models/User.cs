@@ -12,7 +12,10 @@ namespace CurdwithMVC.Models
 		public string MobileNumber { get; set; }
 		public string Password { get; set; }
 		public int Id { get; set; }
-		
+		public string SelectedCity { get; set; }
+		public string Gender { get; set; }
+
+
 	}
 
 }

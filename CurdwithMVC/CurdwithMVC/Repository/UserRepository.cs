@@ -20,7 +20,7 @@ namespace CurdwithMVC.Repository
 
 		public List<User> GetUsers()
 		{
-			var dbResp = _dataFatoryDBDataContext.procGetUsers_07042024();
+			var dbResp = _dataFatoryDBDataContext.procGetUsers_17042024();
 			var User = (from o in dbResp
 						   select new User
 						   {
@@ -28,6 +28,8 @@ namespace CurdwithMVC.Repository
 							   Email= o.Email,
 							   MobileNumber= o.MobileNo,
 							   Id=o.id,
+							   SelectedCity = o.SelectOption,
+							   Gender=o.Gender
 						   }).ToList();
 			return User;	
 
@@ -35,7 +37,7 @@ namespace CurdwithMVC.Repository
 
 		public User GetUserById(int id)
 		{
-			var dbResp = _dataFatoryDBDataContext.procGetUserDetail_07042024(id);
+			var dbResp = _dataFatoryDBDataContext.procGetUserDetail_17042024(id);
 			var user = dbResp.Select(o => new User
 			{
 				UserName = o.Name,
@@ -43,6 +45,9 @@ namespace CurdwithMVC.Repository
 				MobileNumber = o.MobileNo,
 				Id = o.id,
 			    Password= o.Password,
+				SelectedCity = o.SelectOption,
+				Gender = o.Gender
+
 			})
 			.FirstOrDefault();
 			return user;
@@ -50,7 +55,7 @@ namespace CurdwithMVC.Repository
 
 		public bool SaveUser(User user)
 		{
-			var res = _dataFatoryDBDataContext.procSaveUser_07042024(user.UserName, user.Email, user.Password, user.MobileNumber);
+			var res = _dataFatoryDBDataContext.procSaveUser_17042024(user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender);
 			//why we use FirstOrDefault 
 			var isValid = res.FirstOrDefault().isValid;
 			//why we use cast
@@ -79,7 +84,7 @@ namespace CurdwithMVC.Repository
 			}
 
 			// Proceed with the update operation
-			var res = _dataFatoryDBDataContext.procUpdateUser_07042024(user.Id, user.UserName, user.Email, user.Password, user.MobileNumber);
+			var res = _dataFatoryDBDataContext.procUpdateUser_17042024(user.Id, user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender);
 			var isValid = res.FirstOrDefault()?.isValid;
 			return isValid ?? false;
 		}
@@ -87,7 +92,7 @@ namespace CurdwithMVC.Repository
 		public bool DeleteUser(int id)
 		{
 			// Implement logic to delete user from the database
-			var dbResp = _dataFatoryDBDataContext.procDeleteUser_07042024(id);
+			var dbResp = _dataFatoryDBDataContext.procDeleteUser_17042024(id);
 			var isValid = dbResp.FirstOrDefault()?.isValid;
 			return isValid ?? false;
 		}
