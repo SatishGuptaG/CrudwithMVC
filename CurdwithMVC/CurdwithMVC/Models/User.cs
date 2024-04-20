@@ -14,6 +14,8 @@ namespace CurdwithMVC.Models
 		public int Id { get; set; }
 		public string SelectedCity { get; set; }
 		public string Gender { get; set; }
+		public List<string> Hobbies { get; set; }
+		public bool? IsActive { get; set; }
 
 
 	}
