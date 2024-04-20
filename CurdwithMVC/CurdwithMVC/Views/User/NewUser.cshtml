@@ -70,6 +70,42 @@
 
         @*  Select City End *@
 
+        @*   Hobby Section Start  *@
+
+    <div class="mb-3" id="SelectedHobbies">
+        <label>Select Hobbies</label>
+        <div class="form-check checkbox-select">
+            <input class="form-check-input" type="checkbox" value="Cricket" id="cricket"  onclick="validateForm()">
+            <label class="form-check-label" for="cricket">Cricket</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Football" id="football" onclick="validateForm()">
+            <label class="form-check-label" for="football">Football</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Kabaddi" id="kabaddi" onclick="validateForm()">
+            <label class="form-check-label" for="kabaddi">Kabaddi</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Reading" id="reading" onclick="validateForm()">
+            <label class="form-check-label" for="reading">Reading</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Exercise" id="exercise" onclick="validateForm()">
+            <label class="form-check-label" for="exercise">Exercise</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Riding" id="riding" onclick="validateForm()">
+            <label class="form-check-label" for="riding">Riding</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Travelling" id="travelling" onclick="validateForm()">
+            <label class="form-check-label" for="travelling">Travelling</label>
+        </div>
+        <span id="HobbiesError" class="text-danger"></span>
+    </div>
+        @*   Hobby Section End *@
+
         @*  Gender Start *@
         <div class="mb-3" action="#">
             <label>Gender :</label>
@@ -89,13 +125,15 @@
         </div>
         @*  Gender End *@
 
-        @*  RememberMe Start *@
-        <div class="mb-3 d-inline-flex" action="#">
-            <label>Remember Me :</label><br>
-            <input class="mx-2" type="checkbox" id="CheckBox" onchange="validateForm()">
-            <span id="RememberError" class="text-danger"></span>
-        </div>
-        @*  RememberMe End *@
+        @*  Active Start *@
+
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="IsActive" onchange="updateActiveState()">
+        <label class="form-check-label" for="IsActive">Active</label>
+        <span id="ActiveStateDisplay" class="text-danger"></span>
+    </div>
+
+        @*  Active End *@
 
         @*  Submit Button Start *@
         <button class="d-grid btn btn-primary w-50 mx-auto" type="submit" value="Submit" onclick="submitI()">Summit</button>
@@ -114,8 +152,10 @@
         var PASSWORD = document.getElementById("Password").value;
         var CONFIRMPASSWORD = document.getElementById("ConfirmPassword").value;
         var SelectOption = document.getElementById("SelectedCity").value;
+        var selectedHobbies = document.querySelectorAll('input[type="checkbox"]:checked');
         var GenderError = document.querySelector('input[name="gender"]:checked');
-        var rememberCheckbox = document.getElementById('CheckBox');
+      //var isActiveChecked = document.getElementById("Acive").checked;
+//var hobbies = { "cricket": cricket, "football": football, "kabaddi": kabaddi, "reading": reading, "exercise": exercise, "riding": riding, "travelling": travelling }
 
         if (userName.length == 0) {
             document.getElementById('NameError').innerHTML = "Please Enter Your UserName";
@@ -160,21 +200,30 @@
             return false;
         } else {
             document.getElementById('SelectOptionError').innerHTML = "";
-        }
+            }
+
+        if (selectedHobbies.length === 0) {
+                document.getElementById('HobbiesError').innerHTML = "Please select at least one hobby.";
+                return false;
+            } else {
+                document.getElementById('HobbiesError').innerHTML = "";
+            }
+
 
         if (GenderError === null) {
             document.getElementById('GenderError').innerHTML = "Please Select Your Gender";
             return false;
         } else {
             document.getElementById('GenderError').innerHTML = "";
-        }
-
-        if (!rememberCheckbox.checked) {
-                document.getElementById('RememberError').innerHTML = "Please check the Remember Me checkbox";
-                return false;
-            } else {
-                document.getElementById('RememberError').innerHTML = "";
             }
+
+            //if (!isActiveChecked) {
+            //    document.getElementById('ActiveError').innerHTML = "Please activate your account.";
+            //    return false;
+            //} else {
+            //    document.getElementById('ActiveError').innerHTML = "";
+            //}
+
         // All validations passed
         return true;
     }
@@ -188,24 +237,30 @@
 
         // If validation passes, fetch all field data and proceed with form submission
 
-        var userName = document.getElementById("UserName").value.trim();
+        var name = document.getElementById("UserName").value.trim();
         var EMAIL = document.getElementById("Email").value.trim();
         var MOBILE = document.getElementById("MobileNumber").value.trim();
         var PASSWORD = document.getElementById("Password").value.trim();
         var SelectOption = document.getElementById("SelectedCity").value.trim();
+        var selectedHobbies = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(function (checkbox) {
+            return checkbox.value;
+        });
         var GenderError = document.querySelector('input[name="gender"]:checked').value;
-        var rememberCheckbox = document.getElementById("CheckBox").value.trim();
-
+        var IsActive = document.getElementById("IsActive").checked;
 
         // Create a FormData object to store the form data
         var formData = new FormData();
-        formData.append("UserName", userName);
+        formData.append("UserName", name);
         formData.append("Email", EMAIL);
         formData.append("MobileNumber", MOBILE);
         formData.append("Password", PASSWORD);
         formData.append("SelectedCity", SelectOption);
         formData.append("Gender", GenderError);
-        formData.append("CheckBox", rememberCheckbox);
+            // Append selected hobbies
+        selectedHobbies.forEach(function (hobby) {
+            formData.append("Hobbies[]", hobby);
+        });
+        formData.append("IsActive", IsActive);
 
       //  formData.append("ConfirmPassword", CONFIRMPASSWORD);
 
@@ -236,7 +291,16 @@
         });
     }
 
+    function updateActiveState() {
+        var IsActive = document.getElementById("IsActive").checked;
+        var activeStateDisplay = document.getElementById("ActiveStateDisplay");
 
+        if (IsActive) {
+            activeStateDisplay.textContent = "True";
+        } else {
+            activeStateDisplay.textContent = "False";
+        }
+    }
 
 </script>
 

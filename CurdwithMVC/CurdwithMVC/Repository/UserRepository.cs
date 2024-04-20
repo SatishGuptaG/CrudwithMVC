@@ -20,7 +20,7 @@ namespace CurdwithMVC.Repository
 
 		public List<User> GetUsers()
 		{
-			var dbResp = _dataFatoryDBDataContext.procGetUsers_17042024();
+			var dbResp = _dataFatoryDBDataContext.procGetUsers_18042024();
 			var User = (from o in dbResp
 						   select new User
 						   {
@@ -29,7 +29,13 @@ namespace CurdwithMVC.Repository
 							   MobileNumber= o.MobileNo,
 							   Id=o.id,
 							   SelectedCity = o.SelectOption,
-							   Gender=o.Gender
+							   Gender=o.Gender,
+							   Hobbies = o.Hobbies?.Split(new[] { "on" }, StringSplitOptions.RemoveEmptyEntries)
+						         .Select(h => h.Trim())
+						         .ToList(),
+							   IsActive = o.Active.GetValueOrDefault(),
+							   //   IsActive = o.IsActive!=null?(bool)o.IsActive:false,
+
 						   }).ToList();
 			return User;	
 
@@ -55,7 +61,8 @@ namespace CurdwithMVC.Repository
 
 		public bool SaveUser(User user)
 		{
-			var res = _dataFatoryDBDataContext.procSaveUser_17042024(user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender);
+			string hobbies = string.Join(",", user.Hobbies);
+			var res = _dataFatoryDBDataContext.procSaveUser_19042024(user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender, hobbies , user.IsActive);
 			//why we use FirstOrDefault 
 			var isValid = res.FirstOrDefault().isValid;
 			//why we use cast
