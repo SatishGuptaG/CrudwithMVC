@@ -20,7 +20,7 @@ namespace CurdwithMVC.Repository
 
 		public List<User> GetUsers()
 		{
-			var dbResp = _dataFatoryDBDataContext.procGetUsers_18042024();
+			var dbResp = _dataFatoryDBDataContext.procGetUsers_20042024();
 			var User = (from o in dbResp
 						   select new User
 						   {
@@ -33,7 +33,7 @@ namespace CurdwithMVC.Repository
 							   Hobbies = o.Hobbies?.Split(new[] { "on" }, StringSplitOptions.RemoveEmptyEntries)
 						         .Select(h => h.Trim())
 						         .ToList(),
-							   IsActive = o.Active.GetValueOrDefault(),
+							   IsActive = o.IsActive.GetValueOrDefault(),
 							   //   IsActive = o.IsActive!=null?(bool)o.IsActive:false,
 
 						   }).ToList();
@@ -43,7 +43,7 @@ namespace CurdwithMVC.Repository
 
 		public User GetUserById(int id)
 		{
-			var dbResp = _dataFatoryDBDataContext.procGetUserDetail_17042024(id);
+			var dbResp = _dataFatoryDBDataContext.procGetUserDetail_20042024(id);
 			var user = dbResp.Select(o => new User
 			{
 				UserName = o.Name,
@@ -52,7 +52,11 @@ namespace CurdwithMVC.Repository
 				Id = o.id,
 			    Password= o.Password,
 				SelectedCity = o.SelectOption,
-				Gender = o.Gender
+				Gender = o.Gender,
+				Hobbies = o.Hobbies?.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+							 .Select(h => h.Trim())
+							 .ToList(),
+				IsActive = o.IsActive.GetValueOrDefault(),
 
 			})
 			.FirstOrDefault();
@@ -62,7 +66,7 @@ namespace CurdwithMVC.Repository
 		public bool SaveUser(User user)
 		{
 			string hobbies = string.Join(",", user.Hobbies);
-			var res = _dataFatoryDBDataContext.procSaveUser_19042024(user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender, hobbies , user.IsActive);
+			var res = _dataFatoryDBDataContext.procSaveUser_20042024(user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender, hobbies , user.IsActive);
 			//why we use FirstOrDefault 
 			var isValid = res.FirstOrDefault().isValid;
 			//why we use cast
@@ -91,15 +95,17 @@ namespace CurdwithMVC.Repository
 			}
 
 			// Proceed with the update operation
-			var res = _dataFatoryDBDataContext.procUpdateUser_17042024(user.Id, user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender);
-			var isValid = res.FirstOrDefault()?.isValid;
-			return isValid ?? false;
+
+			string hobbies = string.Join(",", user.Hobbies);
+			var res = _dataFatoryDBDataContext.procUpdateUser_20042024(user.Id,user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender, hobbies, user.IsActive);
+			var isValid = res.FirstOrDefault().isValid;
+			return (bool)isValid;
 		}
 
 		public bool DeleteUser(int id)
 		{
 			// Implement logic to delete user from the database
-			var dbResp = _dataFatoryDBDataContext.procDeleteUser_17042024(id);
+			var dbResp = _dataFatoryDBDataContext.procDeleteUser_20042024(id);
 			var isValid = dbResp.FirstOrDefault()?.isValid;
 			return isValid ?? false;
 		}
