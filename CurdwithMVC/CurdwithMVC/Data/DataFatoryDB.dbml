@@ -59,4 +59,20 @@
       <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.procUpsertUser_20240421" Method="procUpsertUser_20240421">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="MobileNo" Parameter="mobileNo" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="SelectOption" Parameter="selectOption" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Gender" Parameter="gender" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="Hobbies" Parameter="hobbies" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="IsActive" Parameter="isActive" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="procUpsertUser_20240421Result">
+      <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="message" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="recordId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

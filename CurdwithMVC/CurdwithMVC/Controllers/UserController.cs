@@ -67,6 +67,13 @@ namespace CurdwithMVC.Controllers
 
 		}
 
+		[HttpPost]
+		public JsonResult UpsertUser(User user)
+		{
+			var result = _userService.UpsertUser(user);
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
 		[HttpGet]
 		public ActionResult Delete(int id)
 		{

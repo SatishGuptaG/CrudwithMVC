@@ -76,7 +76,7 @@ namespace CurdwithMVC.Repository
 		public bool UpdateUser(User user)
 		{
 			// Check if the new email is the same as the existing email
-			var existingUser = GetUserById(user.Id);
+			var existingUser = GetUserById((int)user.Id);
 			if (existingUser == null)
 			{
 				// Handle case where user with the specified ID does not exist
@@ -100,6 +100,35 @@ namespace CurdwithMVC.Repository
 			var res = _dataFatoryDBDataContext.procUpdateUser_20042024(user.Id,user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender, hobbies, user.IsActive);
 			var isValid = res.FirstOrDefault().isValid;
 			return (bool)isValid;
+		}
+
+		public Response UpsertUser(User user)
+		{
+			var a = new Response();
+			if (user.Id != null)
+			{
+				var existingUser = GetUserById((int)user.Id);
+				if (existingUser == null)
+				{
+					return a;
+				}
+
+				if (existingUser.Email != user.Email)
+				{
+					return a;
+				}
+			}
+			
+			string hobbies = string.Join(",", user.Hobbies);
+			var res = _dataFatoryDBDataContext.procUpsertUser_20240421(user.Id, user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender, hobbies, user.IsActive);
+			a = (from o in res
+				 select new Response
+				 {
+					 isValid = o.isValid,
+					 message = o.message,
+				 }).FirstOrDefault();
+			//var isValid = res.FirstOrDefault().isValid;
+			return a;
 		}
 
 		public bool DeleteUser(int id)
