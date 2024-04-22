@@ -17,6 +17,7 @@ namespace CurdwithMVC.Service
 		List<User> GetUsers();
 		User GetUserById(int id);
 		bool UpdateUser(User user);
+		Response UpsertUser(User user);
 		bool DeleteUser(int id);
 	}
 }

@@ -96,6 +96,13 @@ namespace CurdwithMVC.Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
 			return ((ISingleResult<procGetUserDetail_20042024Result>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procUpsertUser_20240421")]
+		public ISingleResult<procUpsertUser_20240421Result> procUpsertUser_20240421([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Name", DbType="NVarChar(100)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(100)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(100)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MobileNo", DbType="NVarChar(100)")] string mobileNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SelectOption", DbType="NVarChar(50)")] string selectOption, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="NVarChar(10)")] string gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Hobbies", DbType="NVarChar(100)")] string hobbies, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IsActive", DbType="Bit")] System.Nullable<bool> isActive)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, name, email, password, mobileNo, selectOption, gender, hobbies, isActive);
+			return ((ISingleResult<procUpsertUser_20240421Result>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class procSaveUser_20042024Result
@@ -493,6 +500,68 @@ namespace CurdwithMVC.Data
 				if ((this._IsActive != value))
 				{
 					this._IsActive = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procUpsertUser_20240421Result
+	{
+		
+		private System.Nullable<bool> _isValid;
+		
+		private string _message;
+		
+		private System.Nullable<int> _recordId;
+		
+		public procUpsertUser_20240421Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isValid", DbType="Bit")]
+		public System.Nullable<bool> isValid
+		{
+			get
+			{
+				return this._isValid;
+			}
+			set
+			{
+				if ((this._isValid != value))
+				{
+					this._isValid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_message", DbType="NVarChar(100)")]
+		public string message
+		{
+			get
+			{
+				return this._message;
+			}
+			set
+			{
+				if ((this._message != value))
+				{
+					this._message = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_recordId", DbType="Int")]
+		public System.Nullable<int> recordId
+		{
+			get
+			{
+				return this._recordId;
+			}
+			set
+			{
+				if ((this._recordId != value))
+				{
+					this._recordId = value;
 				}
 			}
 		}

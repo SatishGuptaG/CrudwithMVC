@@ -14,6 +14,8 @@ namespace CurdwithMVC.Repository
 
 		User GetUserById(int id);
 		bool UpdateUser(User user);
+		Response UpsertUser(User user);
+
 		bool DeleteUser(int id);
 
 	}

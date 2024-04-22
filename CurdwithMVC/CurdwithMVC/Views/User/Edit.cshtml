@@ -21,7 +21,7 @@
     </div>
     <div class="mb-3" action="#">
         <label>Email</label>
-        <input type="email" class="form-control" id="Email" placeholder="Email" value="@Model.Email" onkeyup="validateForm()">
+        <input type="email" class="form-control" id="Email" disabled placeholder="Email" value="@Model.Email" onkeyup="validateForm()">
         <span id="EmailError" class="text-danger"></span>
     </div>
     <div class="mb-3" action="#">
@@ -239,7 +239,7 @@
         //  formData.append("ConfirmPassword", CONFIRMPASSWORD);
 
         // Send a POST request using fetch
-        fetch("/User/UpdateUser", {
+        fetch("/User/UpsertUser", {
             method: "POST",
             body: formData
         })
@@ -249,17 +249,19 @@
                 }
                 return response.json();
             })
-            .then(data => {
+            .then(response => {
                 // Handle the response data as needed
-                if (data) {
-                    alert("User updated successfully!");
+                if (response.isValid == true) {
+
+                    alert(response.message);
+
                     window.location.href = "/user/getusers";
                 }
                 else {
-                    alert("Invalid info!");
+                    alert(response.message);
                 }
 
-                console.log(data);
+                console.log(response);
             })
             .catch(error => {
                 console.error("There was a problem with the fetch operation:", error);

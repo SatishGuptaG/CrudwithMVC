@@ -38,7 +38,10 @@ namespace CurdwithMVC.Service
 		{
 			return _userRepository.UpdateUser(user);
 		}
-
+		public Response UpsertUser(User user)
+		{
+			return _userRepository.UpsertUser(user);
+		}
 		public bool DeleteUser(int id)
 		{
 			return _userRepository.DeleteUser(id);

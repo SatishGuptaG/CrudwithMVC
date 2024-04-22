@@ -265,7 +265,7 @@
       //  formData.append("ConfirmPassword", CONFIRMPASSWORD);
 
         // Send a POST request using fetch
-        fetch("/User/NewUser", {
+        fetch("/User/UpsertUser", {
             method: "POST",
             body: formData
         })
@@ -275,16 +275,16 @@
             }
             return response.json();
         })
-        .then(data => {
+            .then(response => {
             // Handle the response data as needed
-            if (data) {
-                alert("User Inserted Successfully!");
+                if (response.isValid == true) {
+                    alert(response.message);
             }
             else {
-                alert("Email Already Exist!");
+                    alert(response.message);
             }
-            window.location.href = "/User/NewUser";
-            console.log(data);
+            window.location.href = "/User/GetUsers";
+                console.log(response);
         })
         .catch(error => {
             console.error("There was a problem with the fetch operation:", error);
