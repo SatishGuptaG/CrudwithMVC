@@ -54,7 +54,6 @@ namespace CurdwithMVC.Controllers
 		}
 
 
-
 		//public ActionResult GetUsers()
 		//{
 		//	var res = _userService.GetUsers();
@@ -79,14 +78,14 @@ namespace CurdwithMVC.Controllers
 			return View(user);
 		}
 
-		[HttpPost]
-		public JsonResult UpdateUser(User user)
-		{
+		//[HttpPost]
+		//public JsonResult UpdateUser(User user)
+		//{
 			
-			var result = _userService.UpdateUser(user);
-			return Json(result, JsonRequestBehavior.AllowGet);
+		//	var result = _userService.UpdateUser(user);
+		//	return Json(result, JsonRequestBehavior.AllowGet);
 
-		}
+		//}
 
 		[HttpPost]
 		public JsonResult UpsertUser(User user)

@@ -63,44 +63,44 @@ namespace CurdwithMVC.Repository
 			return user;
 		}
 
-		public bool SaveUser(User user)
-		{
-			string hobbies = string.Join(",", user.Hobbies);
-			var res = _dataFatoryDBDataContext.procSaveUser_20042024(user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender, hobbies , user.IsActive);
-			//why we use FirstOrDefault 
-			var isValid = res.FirstOrDefault().isValid;
-			//why we use cast
-			return (bool)isValid;
-		}
+		//public bool SaveUser(User user)
+		//{
+		//	string hobbies = string.Join(",", user.Hobbies);
+		//	var res = _dataFatoryDBDataContext.procSaveUser_20042024(user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender, hobbies , user.IsActive);
+		//	//why we use FirstOrDefault 
+		//	var isValid = res.FirstOrDefault().isValid;
+		//	//why we use cast
+		//	return (bool)isValid;
+		//}
 
-		public bool UpdateUser(User user)
-		{
-			// Check if the new email is the same as the existing email
-			var existingUser = GetUserById((int)user.Id);
-			if (existingUser == null)
-			{
-				// Handle case where user with the specified ID does not exist
-				return false;
-			}
+		//public bool UpdateUser(User user)
+		//{
+		//	// Check if the new email is the same as the existing email
+		//	var existingUser = GetUserById((int)user.Id);
+		//	if (existingUser == null)
+		//	{
+		//		// Handle case where user with the specified ID does not exist
+		//		return false;
+		//	}
 
-			if (existingUser.Email != user.Email)
-			{
-				// Email is being changed, check if the new email already exists
-				//var isEmailExists = GetUsers().Any(u => u.Email == user.Email);
-				//if (isEmailExists)
-				//{
-					// Email already exists, cannot update
-					return false;
-				//}
-			}
+		//	if (existingUser.Email != user.Email)
+		//	{
+		//		// Email is being changed, check if the new email already exists
+		//		//var isEmailExists = GetUsers().Any(u => u.Email == user.Email);
+		//		//if (isEmailExists)
+		//		//{
+		//			// Email already exists, cannot update
+		//			return false;
+		//		//}
+		//	}
 
-			// Proceed with the update operation
+		//	// Proceed with the update operation
 
-			string hobbies = string.Join(",", user.Hobbies);
-			var res = _dataFatoryDBDataContext.procUpdateUser_20042024(user.Id,user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender, hobbies, user.IsActive);
-			var isValid = res.FirstOrDefault().isValid;
-			return (bool)isValid;
-		}
+		//	string hobbies = string.Join(",", user.Hobbies);
+		//	var res = _dataFatoryDBDataContext.procUpdateUser_20042024(user.Id,user.UserName, user.Email, user.Password, user.MobileNumber, user.SelectedCity, user.Gender, hobbies, user.IsActive);
+		//	var isValid = res.FirstOrDefault().isValid;
+		//	return (bool)isValid;
+		//}
 
 		public Response UpsertUser(User user)
 		{
