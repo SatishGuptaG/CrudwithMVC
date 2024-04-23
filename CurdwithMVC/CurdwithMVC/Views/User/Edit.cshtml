@@ -4,8 +4,9 @@
     ViewBag.Title = "Edit";
 }
 <p>
-    <a href="@Url.Action("GetUsers")" class="btn btn-primary">Create New</a>
+    <a href="@Url.Action("GetUsers")" class="btn btn-primary">ListPage</a>
 </p>
+
 <h2 class="text-center">Edit User</h2>
 <div class="container-fluid min-vh-100 w-50 justify-content-center">
 
@@ -121,10 +122,6 @@
 
     <button class="d-grid btn btn-primary w-50 mx-auto" type="submit" value="Save" onclick="submitI()">Save</button>
 
-</div>
-
-<div>
-    @Html.ActionLink("Back to List", "GetUsers")
 </div>
 
 <script>

@@ -1,6 +1,8 @@
 ﻿using System.Web.Mvc;
 using CurdwithMVC.Models;
 using CurdwithMVC.Service;
+using PagedList.Mvc;
+using PagedList;
 
 namespace CurdwithMVC.Controllers
 {
@@ -34,12 +36,31 @@ namespace CurdwithMVC.Controllers
 				return Json(result, JsonRequestBehavior.AllowGet);
 			
 		}
-		public ActionResult GetUsers()
-		{
-			var res = _userService.GetUsers();
 
-			return View(res);
+
+
+		public ActionResult GetUsers(int? page)
+		{
+			// Retrieve the list of users from your repository
+			var users = _userService.GetUsers();
+
+			int pageNumber = (page ?? 1); // If no page number is specified, default to the first page
+			int pageSize = 5; // Number of items per page
+
+			// Paginate the list of users
+			var paginatedUsers = users.ToPagedList(pageNumber, pageSize);
+
+			return View(paginatedUsers);
 		}
+
+
+
+		//public ActionResult GetUsers()
+		//{
+		//	var res = _userService.GetUsers();
+
+		//	return View(res);
+		//}
 
 		// GET: User/NewUserSuccess
 		public ActionResult NewUserSuccess()
