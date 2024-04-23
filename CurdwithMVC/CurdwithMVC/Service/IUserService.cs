@@ -13,10 +13,10 @@ namespace CurdwithMVC.Service
 	
 	public interface IUserService
 	{
-		 bool SaveUser(User user);
+		 //bool SaveUser(User user);
 		List<User> GetUsers();
 		User GetUserById(int id);
-		bool UpdateUser(User user);
+		//bool UpdateUser(User user);
 		Response UpsertUser(User user);
 		bool DeleteUser(int id);
 	}

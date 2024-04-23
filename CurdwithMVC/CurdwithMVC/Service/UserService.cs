@@ -28,16 +28,16 @@ namespace CurdwithMVC.Service
 		}
 
 
-		public bool SaveUser(User user)
-		{
-			var res= _userRepository.SaveUser(user);
-			return res;
-		}
+		//public bool SaveUser(User user)
+		//{
+		//	var res= _userRepository.SaveUser(user);
+		//	return res;
+		//}
 
-		public bool UpdateUser(User user)
-		{
-			return _userRepository.UpdateUser(user);
-		}
+		//public bool UpdateUser(User user)
+		//{
+		//	return _userRepository.UpdateUser(user);
+		//}
 		public Response UpsertUser(User user)
 		{
 			return _userRepository.UpsertUser(user);
