@@ -13,18 +13,6 @@
       <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.procGetUsers_20042024" Method="procGetUsers_20042024">
-    <ElementType Name="procGetUsers_20042024Result">
-      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="MobileNo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SelectOption" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Gender" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="Hobbies" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.procDeleteUser_20042024" Method="procDeleteUser_20042024">
     <Parameter Name="id" Type="System.Int32" DbType="Int" />
     <ElementType Name="procDeleteUser_20042024Result">
@@ -73,6 +61,21 @@
       <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="message" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="recordId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procGetUsers_20240426" Method="procGetUsers_20240426">
+    <Parameter Name="CurrentPage" Parameter="currentPage" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <ElementType Name="procGetUsers_20240426Result">
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MobileNo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SelectOption" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Hobbies" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TotalRecords" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

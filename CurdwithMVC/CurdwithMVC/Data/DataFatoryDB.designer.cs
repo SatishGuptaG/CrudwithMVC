@@ -69,13 +69,6 @@ namespace CurdwithMVC.Data
 			return ((ISingleResult<procSaveUser_20042024Result>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetUsers_20042024")]
-		public ISingleResult<procGetUsers_20042024Result> procGetUsers_20042024()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<procGetUsers_20042024Result>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procDeleteUser_20042024")]
 		public ISingleResult<procDeleteUser_20042024Result> procDeleteUser_20042024([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
 		{
@@ -103,6 +96,13 @@ namespace CurdwithMVC.Data
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, name, email, password, mobileNo, selectOption, gender, hobbies, isActive);
 			return ((ISingleResult<procUpsertUser_20240421Result>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetUsers_20240426")]
+		public ISingleResult<procGetUsers_20240426Result> procGetUsers_20240426([global::System.Data.Linq.Mapping.ParameterAttribute(Name="CurrentPage", DbType="Int")] System.Nullable<int> currentPage, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PageSize", DbType="Int")] System.Nullable<int> pageSize)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), currentPage, pageSize);
+			return ((ISingleResult<procGetUsers_20240426Result>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class procSaveUser_20042024Result
@@ -126,158 +126,6 @@ namespace CurdwithMVC.Data
 				if ((this._isValid != value))
 				{
 					this._isValid = value;
-				}
-			}
-		}
-	}
-	
-	public partial class procGetUsers_20042024Result
-	{
-		
-		private string _Name;
-		
-		private string _Email;
-		
-		private string _MobileNo;
-		
-		private int _id;
-		
-		private string _SelectOption;
-		
-		private string _Gender;
-		
-		private string _Hobbies;
-		
-		private System.Nullable<bool> _IsActive;
-		
-		public procGetUsers_20042024Result()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(100)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this._Name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this._Email = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MobileNo", DbType="NVarChar(100)")]
-		public string MobileNo
-		{
-			get
-			{
-				return this._MobileNo;
-			}
-			set
-			{
-				if ((this._MobileNo != value))
-				{
-					this._MobileNo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this._id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SelectOption", DbType="NVarChar(50)")]
-		public string SelectOption
-		{
-			get
-			{
-				return this._SelectOption;
-			}
-			set
-			{
-				if ((this._SelectOption != value))
-				{
-					this._SelectOption = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="NVarChar(10)")]
-		public string Gender
-		{
-			get
-			{
-				return this._Gender;
-			}
-			set
-			{
-				if ((this._Gender != value))
-				{
-					this._Gender = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hobbies", DbType="NVarChar(100)")]
-		public string Hobbies
-		{
-			get
-			{
-				return this._Hobbies;
-			}
-			set
-			{
-				if ((this._Hobbies != value))
-				{
-					this._Hobbies = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="Bit")]
-		public System.Nullable<bool> IsActive
-		{
-			get
-			{
-				return this._IsActive;
-			}
-			set
-			{
-				if ((this._IsActive != value))
-				{
-					this._IsActive = value;
 				}
 			}
 		}
@@ -562,6 +410,176 @@ namespace CurdwithMVC.Data
 				if ((this._recordId != value))
 				{
 					this._recordId = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procGetUsers_20240426Result
+	{
+		
+		private string _Name;
+		
+		private string _Email;
+		
+		private string _MobileNo;
+		
+		private int _id;
+		
+		private string _SelectOption;
+		
+		private string _Gender;
+		
+		private string _Hobbies;
+		
+		private System.Nullable<bool> _IsActive;
+		
+		private System.Nullable<int> _TotalRecords;
+		
+		public procGetUsers_20240426Result()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(100)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MobileNo", DbType="NVarChar(100)")]
+		public string MobileNo
+		{
+			get
+			{
+				return this._MobileNo;
+			}
+			set
+			{
+				if ((this._MobileNo != value))
+				{
+					this._MobileNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SelectOption", DbType="NVarChar(50)")]
+		public string SelectOption
+		{
+			get
+			{
+				return this._SelectOption;
+			}
+			set
+			{
+				if ((this._SelectOption != value))
+				{
+					this._SelectOption = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="NVarChar(10)")]
+		public string Gender
+		{
+			get
+			{
+				return this._Gender;
+			}
+			set
+			{
+				if ((this._Gender != value))
+				{
+					this._Gender = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hobbies", DbType="NVarChar(100)")]
+		public string Hobbies
+		{
+			get
+			{
+				return this._Hobbies;
+			}
+			set
+			{
+				if ((this._Hobbies != value))
+				{
+					this._Hobbies = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="Bit")]
+		public System.Nullable<bool> IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this._IsActive = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalRecords", DbType="Int")]
+		public System.Nullable<int> TotalRecords
+		{
+			get
+			{
+				return this._TotalRecords;
+			}
+			set
+			{
+				if ((this._TotalRecords != value))
+				{
+					this._TotalRecords = value;
 				}
 			}
 		}

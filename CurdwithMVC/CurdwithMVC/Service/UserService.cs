@@ -16,9 +16,9 @@ namespace CurdwithMVC.Service
 			_userRepository = userRepository;
 		}
 
-		public List<User> GetUsers()
+		public List<User> GetUsers(int currentPage, int pageSize)
 		{
-			var res = _userRepository.GetUsers();
+			var res = _userRepository.GetUsers(currentPage,pageSize);
 			return res;
 		}
 

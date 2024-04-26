@@ -16,7 +16,9 @@ namespace CurdwithMVC.Models
 		public string Gender { get; set; }
 		public List<string> Hobbies { get; set; }
 		public bool? IsActive { get; set; }
-
+		public int CurrentPage { get; set; }
+		public int PageSize { get; set; }
+		public int TotalRecords { get; set; }
 
 	}
 

@@ -10,7 +10,7 @@ namespace CurdwithMVC.Repository
 	public interface IUserRepository
 	{
 		//bool SaveUser(User user);
-		List<User> GetUsers();
+		List<User> GetUsers(int currentPage, int pageSize);
 
 		User GetUserById(int id);
 		//bool UpdateUser(User user);

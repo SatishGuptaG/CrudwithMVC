@@ -18,9 +18,9 @@ namespace CurdwithMVC.Repository
 			_dataFatoryDBDataContext = _dataFatory.DataFatoryDBDataContext();
 		}
 
-		public List<User> GetUsers()
+		public List<User> GetUsers(int currentPage, int pageSize)
 		{
-			var dbResp = _dataFatoryDBDataContext.procGetUsers_20042024();
+			var dbResp = _dataFatoryDBDataContext.procGetUsers_20240426(currentPage,pageSize);
 			var User = (from o in dbResp
 						   select new User
 						   {
@@ -34,6 +34,9 @@ namespace CurdwithMVC.Repository
 						         .Select(h => h.Trim())
 						         .ToList(),
 							   IsActive = o.IsActive.GetValueOrDefault(),
+							   TotalRecords= (int)o.TotalRecords,
+							   CurrentPage = currentPage,
+							   PageSize = pageSize
 							   //   IsActive = o.IsActive!=null?(bool)o.IsActive:false,
 
 						   }).ToList();
