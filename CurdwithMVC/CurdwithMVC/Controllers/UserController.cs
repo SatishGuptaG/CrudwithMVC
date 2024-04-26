@@ -23,19 +23,19 @@ namespace CurdwithMVC.Controllers
 		}
 
 		// POST: User/NewUser
-		[HttpPost]
-		public JsonResult NewUser(User user)
-		{
-			
-				// Call UserService to save the user
-				var result = _userService.SaveUser(user);
+		//[HttpPost]
+		//public JsonResult NewUser(User user)
+		//{
 
-				
-				// Optionally, you can redirect to a success page
-				//return RedirectToAction("NewUserSuccess");
-				return Json(result, JsonRequestBehavior.AllowGet);
+		//	// Call UserService to save the user
+		//	var result = _userService.SaveUser(user);
+
+
+		//	// Optionally, you can redirect to a success page
+		//	//return RedirectToAction("NewUserSuccess");
+		//	return Json(result, JsonRequestBehavior.AllowGet);
 			
-		}
+		//}
 
 
 
